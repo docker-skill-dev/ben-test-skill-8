@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "ben-test-skill-8"
+  annotations:
+    github.com/project-slug: docker-skill-dev/ben-test-skill-8
+  links:
+    - url: https://www.notion.so/dockerinc/Atomist-skill-tutorial-be10a08264bf456b916f5d0fd986ff7b
+      title: Atomist tutorial in Notion
+      icon: web
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "docker-hackathon"
