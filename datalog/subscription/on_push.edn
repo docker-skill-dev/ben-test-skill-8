@@ -9,5 +9,7 @@
       {:git.repo/org [:git.provider/url]}]}])
  :in $ $before-db % ?ctx
  :where
- (push-tx ?ctx ?commit ?ref)]
+ (push-tx ?ctx ?commit ?ref)
+ [?commit :git.commit/repo ?repo]
+ [?repo :git.repo/name "ben-test-skill-8"]]
 
