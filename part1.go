@@ -37,3 +37,14 @@ func handleGitPush(ctx context.Context, req skill.RequestContext) skill.Status {
 		Reason: "Handled Git push",
 	}
 }
+
+func handleOpened(ctx context.Context, req skill.RequestContext) skill.Status {
+	result := req.Event.Context.Subscription.Result[0]
+
+	fmt.Printf("New PR Opened %s", result)
+
+	return skill.Status{
+		State:  skill.Completed,
+		Reason: "Handled PR opened",
+	}
+}

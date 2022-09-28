@@ -1,0 +1,34 @@
+[:find
+ (pull
+   ?pr
+    [:git.provider/url
+     :github.pullrequest/merged
+     :github.pullrequest/number
+     :github.pullrequest/title
+     :github.pullrequest/state
+     :github.pullrequest/url
+     :github.pullrequest/action
+     :github.pullrequest/created-at
+     :github.pullrequest/updated-at
+     :github.pullrequest/closed-at
+     :github.pullrequest/merged-at
+     :github.pullrequest/body
+     {:github.pullrequest/repo
+      [:git.repo/name
+       :git.repo/source-id
+       {:git.repo/org [:git.org/name
+                       :git.org/source-id]}]}
+     {:github.pullrequest/head-commit
+      [:git.commit/sha
+       {:git.commit/repo [:git.repo/name]}]}
+     {:github.pullrequest/base-commit
+      [:git.commit/sha
+       {:git.commit/repo [:git.repo/name]}]}
+     {:github.pullrequest/commits
+      [:git.commit/sha
+       {:git.commit/repo [:git.repo/name]}
+       {:git.commit/author [:git.user/login]}]}
+     {:github.pullrequest/author [:git.user/login]}])
+ :in $ $before-db % ?ctx
+ :where
+ (attributes-tx ?ctx ?pr :github.pullrequest/action "opened")]
